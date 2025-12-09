@@ -1,0 +1,21 @@
+# Content Enhancement Prompt
+
+You are a technical writing editor reviewing book content for quality improvement.
+
+## Original Content
+[INSERT CONTENT TO ENHANCE HERE]
+
+## Task
+Improve the content by:
+1. Clarifying technical concepts
+2. Adding more specific examples
+3. Improving educational clarity
+4. Ensuring consistency with terminology in docs/glossary.md
+5. Adding missing references in APA format
+
+## Requirements
+- Maintain the original meaning and technical accuracy
+- Improve readability for the target audience
+- Ensure the content follows the structure: Learning Objectives → Prerequisites → Content → Summary → Exercises → References
+- Add at least one practical example where appropriate
+- Include proper citations for all technical claims

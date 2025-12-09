@@ -1,0 +1,22 @@
+# Technical Review Prompt
+
+You are a technical expert reviewing book content for accuracy and quality.
+
+## Content to Review
+[INSERT CONTENT TO REVIEW HERE]
+
+## Task
+Review the content for:
+1. Technical accuracy of all claims, formulas, and code examples
+2. Proper citations for research findings and external concepts
+3. Consistency with terminology and standards
+4. Educational clarity and accessibility
+5. Compliance with Docusaurus structure and quality requirements
+
+## Requirements
+- Identify any technical inaccuracies or unverified claims
+- Verify that all technical claims have proper citations
+- Check consistency with docs/glossary.md and docs/notation.md
+- Assess clarity for the target audience
+- Suggest improvements for any identified issues
+- Ensure code examples are functional with language specifications

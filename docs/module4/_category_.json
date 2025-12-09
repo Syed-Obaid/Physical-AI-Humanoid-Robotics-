@@ -1,0 +1,8 @@
+{
+  "label": "Module 4: Embodied AI",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "Vision-language-action models and policy learning for humanoid control."
+  }
+}

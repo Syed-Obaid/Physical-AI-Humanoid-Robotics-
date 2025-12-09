@@ -1,9 +1,11 @@
 # Feature Specification: [FEATURE NAME]
 
-**Feature Branch**: `[###-feature-name]`  
-**Created**: [DATE]  
-**Status**: Draft  
+**Feature Branch**: `[###-feature-name]`
+**Created**: [DATE]
+**Status**: Draft
 **Input**: User description: "$ARGUMENTS"
+
+**Constitution Alignment**: All specifications MUST align with the Physical AI Humanoid Robotics Textbook Constitution
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -85,7 +87,7 @@
 ### Functional Requirements
 
 - **FR-001**: System MUST [specific capability, e.g., "allow users to create accounts"]
-- **FR-002**: System MUST [specific capability, e.g., "validate email addresses"]  
+- **FR-002**: System MUST [specific capability, e.g., "validate email addresses"]
 - **FR-003**: Users MUST be able to [key interaction, e.g., "reset their password"]
 - **FR-004**: System MUST [data requirement, e.g., "persist user preferences"]
 - **FR-005**: System MUST [behavior, e.g., "log all security events"]
@@ -94,6 +96,15 @@
 
 - **FR-006**: System MUST authenticate users via [NEEDS CLARIFICATION: auth method not specified - email/password, SSO, OAuth?]
 - **FR-007**: System MUST retain user data for [NEEDS CLARIFICATION: retention period not specified]
+
+### Constitution Compliance Requirements
+
+- **CCR-001**: Content MUST meet accuracy and technical rigor standards as defined in Constitution Principle I
+- **CCR-002**: Materials MUST ensure educational clarity and accessibility as defined in Constitution Principle II
+- **CCR-003**: Terminology and structure MUST be consistent with defined standards as per Constitution Principle III
+- **CCR-004**: Documentation structure MUST follow Docusaurus quality guidelines per Constitution Principle IV
+- **CCR-005**: Code examples MUST satisfy quality standards outlined in Constitution Principle V
+- **CCR-006**: Deployment artifacts MUST meet publishing standards per Constitution Principle VI
 
 ### Key Entities *(include if feature involves data)*
 

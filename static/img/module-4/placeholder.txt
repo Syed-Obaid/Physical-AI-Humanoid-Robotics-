@@ -1,0 +1,3 @@
+# Placeholder for Module 4 Images
+This is a placeholder for images related to Module 4: Writing with AI Using Spec-Kit + Claude Code.
+Actual images would include AI interface screenshots, workflow diagrams, and examples of AI-generated content.

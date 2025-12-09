@@ -1,0 +1,8 @@
+{
+  "label": "Module 3: Motion Planning",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "Inverse kinematics, trajectory planning, and collision avoidance with MoveIt 2."
+  }
+}

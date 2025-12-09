@@ -1,0 +1,8 @@
+{
+  "label": "Module 2: Digital Twin",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "Build realistic robot simulations in Gazebo and Isaac Sim for testing before hardware deployment."
+  }
+}

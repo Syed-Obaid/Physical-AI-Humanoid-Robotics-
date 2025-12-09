@@ -8,6 +8,8 @@ description: "Task list template for feature implementation"
 **Input**: Design documents from `/specs/[###-feature-name]/`
 **Prerequisites**: plan.md (required), spec.md (required for user stories), research.md, data-model.md, contracts/
 
+**Constitution Alignment**: All tasks MUST verify compliance with Physical AI Humanoid Robotics Textbook Constitution
+
 **Tests**: The examples below include test tasks. Tests are OPTIONAL - only include them if explicitly requested in the feature specification.
 
 **Organization**: Tasks are grouped by user story to enable independent implementation and testing of each story.
@@ -68,6 +70,11 @@ Examples of foundational tasks (adjust based on your project):
 - [ ] T007 Create base models/entities that all stories depend on
 - [ ] T008 Configure error handling and logging infrastructure
 - [ ] T009 Setup environment configuration management
+- [ ] T010 Verify compliance with content accuracy and technical rigor (Constitution Principle I)
+- [ ] T011 Establish glossary and terminology standards for consistency (Constitution Principle III)
+- [ ] T012 Configure Docusaurus structure and metadata requirements (Constitution Principle IV)
+- [ ] T013 Setup code example validation framework (Constitution Principle V)
+- [ ] T014 Implement build and deployment validation gates (Constitution Principle VI)
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 

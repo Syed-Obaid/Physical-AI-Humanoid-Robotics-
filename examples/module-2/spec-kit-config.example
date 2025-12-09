@@ -1,0 +1,35 @@
+# Sample Spec-Kit Configuration File
+
+This is a sample configuration for a Spec-Kit Plus project that demonstrates the configuration structure:
+
+```yaml
+project:
+  name: "AI/Spec-Driven Book Creation"
+  description: "A project to create books using spec-driven methodology with AI assistance"
+  version: "1.0.0"
+  constitution: "./.specify/memory/constitution.md"
+
+directories:
+  specs: "./specs"
+  plans: "./specs/*/plan.md"
+  tasks: "./specs/*/tasks.md"
+  history: "./history"
+  prompts: "./history/prompts"
+  adrs: "./history/adr"
+
+templates:
+  spec: "./.specify/templates/spec-template.md"
+  plan: "./.specify/templates/plan-template.md"
+  tasks: "./.specify/templates/tasks-template.md"
+
+commands:
+  spec: "./.specify/scripts/bash/create-new-feature.sh"
+  plan: "./.specify/scripts/bash/setup-plan.sh"
+  tasks: "./.specify/scripts/bash/check-prerequisites.sh"
+```
+
+This configuration demonstrates:
+- Project metadata
+- Directory structure for specifications, plans, and tasks
+- Template locations
+- Available commands

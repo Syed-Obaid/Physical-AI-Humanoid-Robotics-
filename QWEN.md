@@ -208,3 +208,10 @@ Wait for consent; never auto-create ADRs. Group related decisions (stacks, authe
 
 ## Code Standards
 See `.specify/memory/constitution.md` for code quality, testing, performance, security, and architecture principles.
+
+## Active Technologies
+- JavaScript/TypeScript (Node.js v18+), Markdown, MDX + Docusaurus v3+, Node.js, Yarn, Git, Claude Code + Gemini API (001-create-book-system)
+- Git repository for content, GitHub Pages for hosting, local files for assets (001-create-book-system)
+
+## Recent Changes
+- 001-create-book-system: Added JavaScript/TypeScript (Node.js v18+), Markdown, MDX + Docusaurus v3+, Node.js, Yarn, Git, Claude Code + Gemini API

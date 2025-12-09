@@ -1,0 +1,3 @@
+# Placeholder for Module 5 Images
+This is a placeholder for images related to Module 5: Publishing & Advanced Techniques.
+Actual images would include deployment diagrams, SEO analytics screenshots, and MDX component examples.

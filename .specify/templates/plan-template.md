@@ -31,7 +31,12 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+- Content accuracy and technical rigor verified
+- Educational clarity and accessibility considerations addressed
+- Consistency with terminology and standards confirmed
+- Docusaurus structure and quality requirements met
+- Code example quality standards satisfied
+- Deployment and publishing standards verified
 
 ## Project Structure
 

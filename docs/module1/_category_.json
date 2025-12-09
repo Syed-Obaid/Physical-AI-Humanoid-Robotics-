@@ -1,0 +1,8 @@
+{
+  "label": "Module 1: ROS 2 Foundation",
+  "position": 1,
+  "link": {
+    "type": "generated-index",
+    "description": "Learn ROS 2 Humble, create workspaces, define URDF robot models, write publisher/subscriber nodes, and visualize robots in RViz."
+  }
+}

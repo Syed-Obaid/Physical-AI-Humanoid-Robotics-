@@ -1,0 +1,3 @@
+# Placeholder for Module 3 Images
+This is a placeholder for images related to Module 3: Book Engineering with Specifications.
+Actual images would include specification templates, workflow diagrams, and architectural sketches.
