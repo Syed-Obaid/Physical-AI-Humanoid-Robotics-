@@ -112,7 +112,7 @@ const config = {
             label: 'Book',
           },
           {
-            href: 'https://github.com/Syed-Obaid/',
+            href: 'https://github.com/Syed-Obaid/Physical-AI-Humanoid-Robotics-',
             label: 'GitHub',
             position: 'right',
           },
