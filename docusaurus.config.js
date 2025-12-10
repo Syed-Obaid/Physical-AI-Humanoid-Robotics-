@@ -11,7 +11,8 @@ const config = {
   favicon: 'img/logo.svg',
 
   // Set the production url of your site here
-  url: 'https://Syed-Obaid.github.io',
+  // url: 'https://Syed-Obaid.github.io',
+  url: 'https://physical-ai-humanoid-robotics-opal.vercel.app/',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub Pages, this is usually '/<projectName>/'
   baseUrl: '/',
