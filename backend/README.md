@@ -3,8 +3,8 @@ title: RAG Chatbot API
 emoji: 📚
 colorFrom: blue
 colorTo: purple
-sdk: docker
-app_port: 7860
+app_file: Dockerfile       # specify your Dockerfile or entry script
+app_port: 7860 
 pinned: false
 license: mit
 ---
