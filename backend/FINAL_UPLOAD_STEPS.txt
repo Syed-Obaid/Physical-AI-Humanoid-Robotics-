@@ -1,0 +1,49 @@
+================================================================================
+UPLOAD YOUR FIXES - 3 SIMPLE STEPS
+================================================================================
+
+Since git push needs authentication, upload via the web interface:
+
+STEP 1: Update Dockerfile
+--------------------------
+1. Go to: https://huggingface.co/spaces/SYED-OBAID/rag-chatbot-api/blob/main/Dockerfile
+2. Click "Edit" button
+3. Replace content with the file: /tmp/rag-chatbot-api/Dockerfile
+4. Commit changes
+
+STEP 2: Update requirements.txt
+--------------------------------
+1. Go to: https://huggingface.co/spaces/SYED-OBAID/rag-chatbot-api/blob/main/requirements.txt
+2. Click "Edit" button
+3. Replace with this content:
+   
+   fastapi==0.104.1
+   uvicorn[standard]==0.24.0
+   cohere>=5.20.0
+   qdrant-client==1.8.0
+   pydantic==2.5.0
+   pydantic-settings==2.1.0
+   python-dotenv==1.0.0
+   httpx==0.25.2
+
+4. Commit changes
+
+STEP 3: Create __init__.py
+---------------------------
+1. Go to: https://huggingface.co/spaces/SYED-OBAID/rag-chatbot-api/tree/main/src/vector_db
+2. Click "Add file" → "Create new file"
+3. Name: __init__.py
+4. Content: (leave empty)
+5. Commit
+
+THAT'S IT!
+==========
+Your Space will rebuild automatically (5-10 minutes)
+
+Monitor: https://huggingface.co/spaces/SYED-OBAID/rag-chatbot-api
+
+Test when ready: curl https://syed-obaid-rag-chatbot-api.hf.space/
+
+DETAILED GUIDE: See UPLOAD_FIXES_NOW.md
+
+================================================================================
