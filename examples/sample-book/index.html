@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction to Robotics - Sample Chapter</title>
+    <style>
+        body {
+            font-family: Georgia, serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f8f8;
+        }
+        .chapter {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            color: #333;
+        }
+        p {
+            margin-bottom: 15px;
+        }
+        #chatbot-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="chapter">
+        <h1>Introduction to Robotics</h1>
+        <h2>Chapter 1: What is Robotics?</h2>
+        
+        <p>Robotics is an interdisciplinary branch of engineering and science that includes mechanical engineering, electrical engineering, computer science, and others. It deals with the design, construction, operation, and application of robots, as well as computer systems for their control, sensory feedback, and information processing.</p>
+        
+        <p>These technologies are used to develop machines that can substitute for humans. Robots can be used in any situation and for any task, meaning that these systems can be used in any field of work. Many of today's robots are inspired by nature contributing to the field of bio-inspired robotics.</p>
+        
+        <h3>History of Robotics</h3>
+        <p>The concept of artificial servants or assistants can be found as far back as the ancient Greek myths. The word robot was not coined until 1920, however, by the Czech writer Karel Capek in his play R.U.R. (Rossum's Universal Robots).</p>
+        
+        <p>Since then, the concept has evolved and been refined through the decades. The first digitally operated and programmable robot was invented by George Devol in 1954 and was ultimately called the Unimate.</p>
+        
+        <h3>Modern Robotics</h3>
+        <p>Today's robots are more intelligent and capable than ever before. They can perform tasks that are dangerous for humans, work in environments that are hostile to human life, and perform repetitive tasks without tiring. Modern robots incorporate complex sensors, advanced algorithms, and powerful processors to navigate and interact with the world around them.</p>
+        
+        <p>Artificial intelligence has become an increasingly important component of robotics. Machine learning algorithms enable robots to improve their performance over time, adapt to new situations, and even collaborate with humans in shared workspaces.</p>
+        
+        <h3>Applications of Robotics</h3>
+        <p>Robots are used in various industries including manufacturing, healthcare, space exploration, and domestic services. In manufacturing, robots perform assembly line tasks with precision and consistency. In healthcare, they assist in surgeries and patient care. Space agencies use robots to explore planets and gather data from environments too dangerous for humans.</p>
+        
+        <p>The impact of robotics on society is significant. As robots become more prevalent in our daily lives, questions about ethics, employment, and human-robot interaction become increasingly important to address.</p>
+    </div>
+    
+    <!-- Chatbot Container -->
+    <div id="chatbot-container"></div>
+    
+    <!-- Include the Chatbot Widget -->
+    <script src="../../frontend/src/components/ChatbotWidget.js"></script>
+    <script>
+        // Initialize the chatbot when the page loads
+        document.addEventListener("\DOMContentLoaded", function() {
+            // In a real implementation, you would have a real book ID
+            // For this demo, we'll use a placeholder
+            RAGChatbot.init({
+                containerId: "chatbot-container",
+                bookId: "robotics-introduction-001",
+                apiUrl: "http://localhost:8000/v1"  // Adjust to your API endpoint
+            });
+        });
+    </script>
+</body>
+</html>

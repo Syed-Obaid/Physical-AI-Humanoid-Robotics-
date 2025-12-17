@@ -1,0 +1,265 @@
+openapi: 3.0.0
+info:
+  title: RAG Chatbot API
+  description: API for the Retrieval-Augmented Generation chatbot embedded in digital books
+  version: 1.0.0
+servers:
+  - url: https://api.rag-chatbot.com/v1
+    description: Production server
+  - url: https://staging-api.rag-chatbot.com/v1
+    description: Staging server
+
+paths:
+  /books:
+    get:
+      summary: List available books
+      description: Retrieve a list of books that are available for the RAG chatbot
+      responses:
+        '200':
+          description: A list of available books
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Book'
+    post:
+      summary: Add a new book
+      description: Add a new book to the system for use with the RAG chatbot
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BookInput'
+      responses:
+        '201':
+          description: Book successfully added
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+
+  /books/{bookId}:
+    get:
+      summary: Get book details
+      description: Retrieve detailed information about a specific book
+      parameters:
+        - name: bookId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Unique identifier of the book
+      responses:
+        '200':
+          description: Book details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+        '404':
+          description: Book not found
+
+  /chat/sessions:
+    post:
+      summary: Create a new chat session
+      description: Initialize a new chat session for interacting with a book
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                bookId:
+                  type: string
+                  description: ID of the book to interact with
+              required:
+                - bookId
+      responses:
+        '201':
+          description: Chat session created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChatSession'
+
+  /chat/sessions/{sessionId}/messages:
+    post:
+      summary: Send a message in a chat session
+      description: Send a query to the RAG chatbot and receive a response
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Unique identifier of the chat session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  description: The user query message
+              required:
+                - message
+      responses:
+        '200':
+          description: Response from the chatbot
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChatResponse'
+        '404':
+          description: Chat session not found
+        '429':
+          description: Rate limit exceeded
+
+  /chat/sessions/{sessionId}:
+    get:
+      summary: Get chat session details
+      description: Retrieve information about a specific chat session
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Unique identifier of the chat session
+      responses:
+        '200':
+          description: Chat session details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChatSession'
+        '404':
+          description: Chat session not found
+
+components:
+  schemas:
+    Book:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the book
+        title:
+          type: string
+          description: Title of the book
+        author:
+          type: string
+          description: Author of the book
+        content:
+          type: string
+          description: The full text content of the book (truncated in API responses)
+        metadata:
+          type: object
+          description: Additional book metadata
+        createdAt:
+          type: string
+          format: date-time
+          description: When the book was added to the system
+        updatedAt:
+          type: string
+          format: date-time
+          description: When the book was last updated
+      required:
+        - id
+        - title
+        - author
+        - createdAt
+        - updatedAt
+
+    BookInput:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Title of the book
+        author:
+          type: string
+          description: Author of the book
+        content:
+          type: string
+          description: The full text content of the book
+        metadata:
+          type: object
+          description: Additional book metadata
+      required:
+        - title
+        - author
+        - content
+
+    ChatSession:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the session
+        sessionToken:
+          type: string
+          description: Anonymous token for session identification
+        bookId:
+          type: string
+          description: Reference to the Book Content being used
+        active:
+          type: boolean
+          description: Whether the session is currently active
+        createdAt:
+          type: string
+          format: date-time
+          description: When the session was created
+        lastInteractionAt:
+          type: string
+          format: date-time
+          description: Timestamp of the last interaction
+        expiresAt:
+          type: string
+          format: date-time
+          description: When the session expires
+      required:
+        - id
+        - sessionToken
+        - bookId
+        - active
+        - createdAt
+        - lastInteractionAt
+        - expiresAt
+
+    ChatResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the response
+        queryId:
+          type: string
+          description: Reference to the User Query
+        responseText:
+          type: string
+          description: The text of the chatbot's response
+        sources:
+          type: array
+          items:
+            type: string
+          description: IDs of Retrieved Context used to generate the response
+        generatedAt:
+          type: string
+          format: date-time
+          description: When the response was generated
+        hasCitations:
+          type: boolean
+          description: Whether the response includes citations to book content
+      required:
+        - id
+        - queryId
+        - responseText
+        - sources
+        - generatedAt
+        - hasCitations

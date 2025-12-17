@@ -1,92 +1,108 @@
-# AI/Spec-Driven Book Creation System
+# RAG Chatbot for Digital Books
 
-Build, Write & Deploy Books Using Docusaurus
+This project implements a Retrieval-Augmented Generation (RAG) chatbot embedded in digital books, allowing readers to ask questions about book content and receive accurate, contextually relevant answers.
 
-## Overview
+## Architecture
 
-This project provides a complete system for creating books using a spec-driven approach with Docusaurus, GitHub Pages, Spec-Kit Plus, and Claude Code. The methodology ensures consistency, quality control, and reproducibility in book creation.
+The system consists of:
+- **Backend**: FastAPI application handling API requests, vector database operations, and LLM interactions
+- **Vector Database**: Qdrant Cloud for storing and retrieving document embeddings
+- **LLM Service**: Cohere API for generating answers based on retrieved context
+- **Frontend**: JavaScript widget for embedding in digital books
 
-## Features
+## Technologies Used
 
-- **Spec-Driven Methodology**: Create detailed specifications before writing
-- **AI-Assisted Writing**: Leverage Claude Code for content generation
-- **Docusaurus Integration**: Professional documentation site generation
-- **Automated Deployment**: GitHub Pages CI/CD workflow
-- **Quality Gates**: Validation at every stage of creation
-- **Modular Organization**: 6 comprehensive modules covering all aspects of book creation
+- Python 3.11+
+- FastAPI
+- Cohere API
+- Qdrant Cloud
+- PostgreSQL (Neon Serverless)
+- JavaScript for frontend widget
 
-## Getting Started
+## Setup
 
-### Prerequisites
-
-- Node.js (v18+)
-- Yarn package manager
-- Git version control system
-- Access to Claude Code with Gemini API
-
-### Installation
-
-1. Clone the repository:
+1. Install Python dependencies:
    ```bash
-   git clone <repository-url>
-   cd <repository-name>
+   cd backend
+   pip install -r requirements.txt
    ```
 
-2. Install dependencies:
+2. Set up environment variables:
    ```bash
-   yarn install
+   cp .env.example .env
+   # Edit .env with your API keys and configuration
    ```
 
-3. Start the development server:
+3. Start the backend server:
    ```bash
-   yarn start
+   cd backend
+   uvicorn src.api.main:app --reload --port 8000
    ```
 
-4. Visit `http://localhost:3000` to view the book
+## Adding a Book
 
-### Structure
+To add a book to the system, use the API endpoint:
 
-The book is organized into 6 modules:
+```bash
+curl -X POST "http://localhost:8000/v1/books" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "Introduction to Robotics",
+    "author": "Sample Author",
+    "content": "Full text content of the book goes here...",
+    "metadata": {
+      "isbn": "1234567890",
+      "published": "2023-01-01"
+    }
+  }'
+```
 
-1. **Introduction & Foundations**: Core concepts and tool overview
-2. **Environment Setup**: Docusaurus, Spec-Kit, and Claude Code configuration
-3. **Book Engineering**: Specifications, planning, and structure
-4. **Writing with AI**: Spec-Kit and Claude Code integration
-5. **Publishing & Advanced Techniques**: SEO, search, deployment
-6. **Final Project**: Complete implementation example
+## Running the Demo
 
-## Usage
+1. Start the backend server as described above
+2. Open `examples/sample-book/index.html` in a web browser
+3. The chatbot widget will be available in the bottom-right corner
+4. Ask questions about the content of the sample book
 
-1. Follow the specification-driven approach:
-   - Create specifications using `/sp.specify`
-   - Plan implementation with `/sp.plan`
-   - Generate tasks using `/sp.tasks`
-   - Implement with guidance from the book content
+## Frontend Integration
 
-2. Use Claude Code prompts from the examples directory to generate content
+To embed the chatbot in your own digital book:
 
-3. Validate your content using the quality gates
+1. Include the JavaScript widget in your HTML:
+   ```html
+   <script src="/path/to/ChatbotWidget.js"></script>
+   <div id="chatbot-container"></div>
+   ```
 
-4. Deploy using GitHub Actions workflow
+2. Initialize the widget:
+   ```javascript
+   RAGChatbot.init({
+     containerId: "chatbot-container",
+     bookId: "your-book-id",
+     apiUrl: "http://localhost:8000/v1"
+   });
+   ```
 
-## Scripts
+## API Endpoints
 
-- `yarn start`: Start development server
-- `yarn build`: Generate production build
-- `yarn serve`: Serve built site locally
-- `yarn validate`: Run all validation checks
+- `POST /v1/books` - Add a new book
+- `GET /v1/books` - List available books
+- `GET /v1/books/{bookId}` - Get book details
+- `POST /v1/chat/sessions` - Create a new chat session
+- `POST /v1/chat/sessions/{sessionId}/messages` - Send a message in a session
+- `GET /v1/chat/sessions/{sessionId}` - Get session details
 
-## Contributing
+## How It Works
 
-1. Fork the repository
-2. Create a feature branch
-3. Add your content following the constitutional principles
-4. Submit a pull request with proper validation
+1. Books are processed and split into chunks, then embeddings are generated using Cohere
+2. Embeddings are stored in Qdrant vector database with metadata
+3. When a user asks a question, it is embedded and searched against the book's chunks
+4. Relevant chunks are retrieved and used as context for the LLM
+5. Cohere generates a response based on the question and context
+6. The response is returned to the user with source citations
 
-## License
+## Privacy Compliance
 
-[Specify license type if applicable]
-
-## Support
-
-For support, please open an issue in the GitHub repository.
+- User queries are not stored permanently
+- Sessions expire after a set time period
+- No user data is retained beyond session lifetime
