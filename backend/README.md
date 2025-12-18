@@ -1,21 +1,21 @@
 ---
-title: RAG Chatbot API
-emoji: 📚
+title: Robotics Book Chatbot API
+emoji: 🤖
 colorFrom: blue
 colorTo: purple
-app_file: Dockerfile       # specify your Dockerfile or entry script
-app_port: 7860 
+sdk: docker
+app_port: 7860
 pinned: false
 license: mit
 ---
 
-# RAG Chatbot API
+# Robotics Book Chatbot API
 
 A production-ready Retrieval-Augmented Generation (RAG) chatbot API built with FastAPI, Cohere, and Qdrant.
 
 ## Features
 
-- **Book Management**: Upload and manage books/documents
+- **Book Management**: Upload and manage robotics books/documents
 - **Vector Search**: Semantic search using Cohere embeddings and Qdrant
 - **Chat Sessions**: Interactive Q&A sessions about your documents
 - **AI-Powered**: Uses Cohere's command-r model for intelligent responses
@@ -31,7 +31,6 @@ A production-ready Retrieval-Augmented Generation (RAG) chatbot API built with F
 - `GET /v1/books` - List all books
 - `GET /v1/books/{book_id}` - Get specific book
 - `PUT /v1/books/{book_id}` - Update book
-- `DELETE /v1/books/{book_id}` - Delete book
 
 ### Chat
 - `POST /v1/chat/sessions` - Create chat session
@@ -42,35 +41,35 @@ A production-ready Retrieval-Augmented Generation (RAG) chatbot API built with F
 
 ### Create a Book
 ```bash
-curl -X POST "https://syed-obaid-rag-chatbot-api.hf.space/v1/books" \
+curl -X POST "https://obaid987-robotics-book-chatbot-api.hf.space/v1/books" \
   -H "Content-Type: application/json" \
   -d '{
-    "title": "AI Basics",
+    "title": "Robotics Fundamentals",
     "author": "Tech Author",
-    "content": "Artificial intelligence is transforming technology...",
-    "metadata": {"genre": "technology"}
+    "content": "Robotics combines mechanical engineering, electrical engineering, and computer science...",
+    "metadata": {"genre": "robotics"}
   }'
 ```
 
 ### Create Chat Session
 ```bash
-curl -X POST "https://syed-obaid-rag-chatbot-api.hf.space/v1/chat/sessions" \
+curl -X POST "https://obaid987-robotics-book-chatbot-api.hf.space/v1/chat/sessions" \
   -H "Content-Type: application/json" \
   -d '{"book_id": "YOUR_BOOK_ID"}'
 ```
 
 ### Ask Questions
 ```bash
-curl -X POST "https://syed-obaid-rag-chatbot-api.hf.space/v1/chat/sessions/YOUR_SESSION_TOKEN/messages" \
+curl -X POST "https://obaid987-robotics-book-chatbot-api.hf.space/v1/chat/sessions/YOUR_SESSION_TOKEN/messages" \
   -H "Content-Type: application/json" \
-  -d '{"message": "What is this book about?"}'
+  -d '{"message": "What are the key concepts in robotics?"}'
 ```
 
 ## API Documentation
 
 Once deployed, visit:
-- **Swagger UI**: https://syed-obaid-rag-chatbot-api.hf.space/docs
-- **ReDoc**: https://syed-obaid-rag-chatbot-api.hf.space/redoc
+- **Swagger UI**: https://obaid987-robotics-book-chatbot-api.hf.space/docs
+- **ReDoc**: https://obaid987-robotics-book-chatbot-api.hf.space/redoc
 
 ## Configuration
 

@@ -59,6 +59,14 @@ const config = {
     ],
   ],
 
+
+  scripts: [
+    {
+      src: '/js/chatbot-config.js',
+      async: false,
+    },
+  ],
+
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
@@ -172,5 +180,6 @@ const config = {
       },
     }),
 };
+
 
 module.exports = config;

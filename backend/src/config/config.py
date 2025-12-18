@@ -22,7 +22,7 @@ class Settings(BaseSettings):
 
     # Cohere settings
     COHERE_API_KEY: str = ""
-    COHERE_MODEL: str = "command-r"  # Default model for generation
+    COHERE_MODEL: str = "command-a-03-2025"  # Default model for generation (Command A - Dec 2025)
     COHERE_EMBED_MODEL: str = "embed-english-v3.0"  # Default model for embeddings
 
     # Qdrant settings
