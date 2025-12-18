@@ -41,46 +41,52 @@ class LLMService:
         # Format the context into a single string
         formatted_context = self._format_context(context_chunks)
         
-        # Construct the prompt for the LLM
-        prompt = f"""
-        Based on the following context, please answer the user's question.
-        If the answer is not in the context, please say so clearly.
-        
-        Context:
-        {formatted_context}
-        
-        Question: {query}
-        
-        Answer:
-        """
-        
-        # Generate the response using Cohere
-        response = self.client.generate(
+        # Construct the system message and user message for Chat API
+        system_message = """You are a helpful AI assistant that answers questions based on the provided context.
+        If the answer is not in the context, please say so clearly."""
+
+        user_message = f"""Context:
+{formatted_context}
+
+Question: {query}
+
+Please answer the question based on the context provided above."""
+
+        # Generate the response using Cohere Chat API
+        response = self.client.chat(
             model=self.model,
-            prompt=prompt,
+            message=user_message,
+            preamble=system_message,
             max_tokens=max_tokens,
             temperature=0.3,  # Low temperature for more factual responses
-            stop_sequences=["\n\n"]  # Stop at double newlines
         )
-        
+
         # Extract and return the generated text
-        return response.generations[0].text.strip()
+        return response.text.strip()
     
     def _format_context(self, context_chunks: List[Dict]) -> str:
         """
         Format the context chunks into a single string
-        
+
         Args:
             context_chunks: List of context chunks with text and metadata
-        
+
         Returns:
             Formatted context string
         """
+        if not context_chunks:
+            return "No relevant context found."
+
         formatted_chunks = []
-        for chunk in context_chunks:
-            formatted_chunks.append(f"Source: {chunk['text'][:200]}... (Position: {chunk['position']})")
-        
-        return "\n\n".join(formatted_chunks)
+        for i, chunk in enumerate(context_chunks):
+            text = chunk.get('text', '')
+            position = chunk.get('position', i)
+            if text:
+                # Truncate long texts safely
+                truncated = text[:200] + "..." if len(text) > 200 else text
+                formatted_chunks.append(f"Source {position}: {truncated}")
+
+        return "\n\n".join(formatted_chunks) if formatted_chunks else "No context available."
     
     def check_hallucination(self, response: str, context: List[Dict]) -> bool:
         """

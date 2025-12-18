@@ -48,6 +48,13 @@ class VectorDBClient:
                     distance=models.Distance.COSINE
                 )
             )
+
+            # Create payload index for book_id to enable filtering
+            self.client.create_payload_index(
+                collection_name=self.collection_name,
+                field_name="book_id",
+                field_schema=models.PayloadSchemaType.KEYWORD
+            )
     
     def store_embeddings(self, book_id: str, chunks: List[dict]) -> List[str]:
         """
@@ -105,31 +112,44 @@ class VectorDBClient:
         if self.client is None:
             raise Exception(f"Vector database not available: {self.connection_error}")
 
-        # Search for similar vectors
-        results = self.client.search(
-            collection_name=self.collection_name,
-            query_vector=query_embedding,
-            query_filter=models.Filter(
-                must=[
-                    models.FieldCondition(
-                        key="book_id",
-                        match=models.MatchValue(value=book_id)
-                    )
-                ]
-            ),
-            limit=top_k
+        # Build filter for book_id
+        query_filter = models.Filter(
+            must=[
+                models.FieldCondition(
+                    key="book_id",
+                    match=models.MatchValue(value=book_id)
+                )
+            ]
         )
-        
+
+        # Search for similar vectors - handle both old and new qdrant-client API
+        try:
+            # New API (qdrant-client >= 1.7.0)
+            results = self.client.query_points(
+                collection_name=self.collection_name,
+                query=query_embedding,
+                query_filter=query_filter,
+                limit=top_k
+            ).points
+        except AttributeError:
+            # Fallback to old API (qdrant-client < 1.7.0)
+            results = self.client.search(
+                collection_name=self.collection_name,
+                query_vector=query_embedding,
+                query_filter=query_filter,
+                limit=top_k
+            )
+
         # Format results
         formatted_results = []
         for result in results:
             formatted_results.append({
-                "text": result.payload["text"],
-                "position": result.payload["position"],
+                "text": result.payload.get("text", ""),
+                "position": result.payload.get("position", 0),
                 "similarity_score": result.score,
-                "vector_id": result.id
+                "vector_id": str(result.id)
             })
-        
+
         return formatted_results
     
     def delete_book_embeddings(self, book_id: str):
