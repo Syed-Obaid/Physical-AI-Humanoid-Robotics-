@@ -15,7 +15,7 @@ export default function Root({ children }) {
             : 'https://obaid987-robotics-book-chatbot-api.hf.space/v1';
           const bookId = typeof window !== 'undefined' && window.CHATBOT_BOOK_ID
             ? window.CHATBOT_BOOK_ID
-            : '878aa88f-4103-42bc-9786-05095e99abdc';
+            : '72fe6bba-7264-4721-80cf-d7cf1bf0caee';
           return <FloatingChatbot bookId={bookId} apiUrl={apiUrl} />;
         }}
       </BrowserOnly>
